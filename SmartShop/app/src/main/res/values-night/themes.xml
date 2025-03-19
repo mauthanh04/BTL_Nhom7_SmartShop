@@ -1,0 +1,13 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.AppOrderFood" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Đặt màu nền của Button là trắng -->
+        <item name="colorPrimary">@android:color/white</item>
+        <item name="colorPrimaryContainer">@android:color/white</item>
+
+        <!-- Đặt màu chữ của Button là đen để nhìn rõ hơn trên nền trắng -->
+        <item name="android:textColorPrimary">#000000</item>
+
+        <item name="materialButtonStyle">@style/Widget.Material3.Button</item>
+    </style>
+</resources>

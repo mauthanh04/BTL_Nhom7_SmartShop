@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<androidx.cardview.widget.CardView
+    android:id="@+id/cardview"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_margin="5dp"
+                android:id="@+id/imageviewSanPham"
+                android:layout_width="100dp"
+                android:layout_height="100dp" />
+            <TextView
+                android:gravity="center"
+                android:textColor="#000000"
+                android:text="Tên sản phẩm"
+                android:textSize="20sp"
+                android:id="@+id/textviewTenSP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:gravity="center"
+                android:id="@+id/textviewGiaSP"
+                android:textColor="#f20"
+                android:textSize="17sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <ImageView
+            android:src="@drawable/icon_new"
+            android:layout_gravity="top|right"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+    </FrameLayout>
+
+</androidx.cardview.widget.CardView>
+</LinearLayout>
