@@ -5,7 +5,7 @@
     android:id="@+id/hint"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backgroud">
+    android:background="@drawable/img">
 
     <TextView
         android:id="@+id/textView2"
@@ -32,6 +32,7 @@
         android:ems="10"
         android:hint="Tên đầy đủ"
         android:inputType="text"
+        android:textColor="@color/white"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
         android:paddingRight="10dp"
@@ -43,6 +44,7 @@
 
     <EditText
         android:id="@+id/email"
+        android:textColor="@color/white"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -61,6 +63,7 @@
 
     <EditText
         android:id="@+id/username"
+        android:textColor="@color/white"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -79,6 +82,7 @@
 
     <EditText
         android:id="@+id/password"
+        android:textColor="@color/white"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
