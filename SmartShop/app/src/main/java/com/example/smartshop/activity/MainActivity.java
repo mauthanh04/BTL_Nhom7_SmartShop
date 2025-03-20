@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -41,7 +42,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
-
+    //Khai báo biến
     DrawerLayout drawerLayout;
     Toolbar toolbar;
     ViewFlipper viewFlipper;
@@ -60,18 +61,81 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //khoi tạo các thành phần giao diện
         AnhXa();
         if(CheckConnection.haveNetworkConnection(getApplicationContext())){
             actionBar();
             actionViewFlipper();
             GetDuLieuLoaiSP();
             GetDuLieuSPMoiNhat();
+            //CHANGE
+            CatchOnItemListView();
         }
         else {
             CheckConnection.ShowToast_Short(getApplicationContext(), "Bạn hãy kiểm tra lại kết nối");
             finish();
         }
 
+    }
+
+    //CHANGE : Chuyển trang khi ấn vào các loại sản phẩm ở listview
+    private void CatchOnItemListView() {
+        listViewManHinhChinh.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position){
+                    case 0:
+                        if(CheckConnection.haveNetworkConnection(getApplicationContext())){
+                            Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                            startActivity(intent);
+                        }else{
+                            CheckConnection.ShowToast_Short(getApplicationContext(),"Bạn hãy kiểm tra lại thông báo");
+                        }
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case 1:
+                        if(CheckConnection.haveNetworkConnection(getApplicationContext())){
+                            Intent intent = new Intent(MainActivity.this, DienThoaiActivity.class);
+                            intent.putExtra("idloaisanpham",mangLoaiSp.get(position).getId());
+                            startActivity(intent);
+                        }else{
+                            CheckConnection.ShowToast_Short(getApplicationContext(),"Bạn hãy kiểm tra lại thông báo");
+                        }
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case 2:
+                        if(CheckConnection.haveNetworkConnection(getApplicationContext())){
+                            Intent intent = new Intent(MainActivity.this, LapTopActivity.class);
+                            intent.putExtra("idloaisanpham",mangLoaiSp.get(position).getId());
+                            startActivity(intent);
+                        }else{
+                            CheckConnection.ShowToast_Short(getApplicationContext(),"Bạn hãy kiểm tra lại thông báo");
+                        }
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case 3:
+                        if(CheckConnection.haveNetworkConnection(getApplicationContext())){
+                            Intent intent = new Intent(MainActivity.this, LienHeActivity.class);
+                            intent.putExtra("idloaisanpham",mangLoaiSp.get(position).getId());
+                            startActivity(intent);
+                        }else{
+                            CheckConnection.ShowToast_Short(getApplicationContext(),"Bạn hãy kiểm tra lại thông báo");
+                        }
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case 4:
+                        if(CheckConnection.haveNetworkConnection(getApplicationContext())){
+                            Intent intent = new Intent(MainActivity.this, ThongTinActivity.class);
+                            intent.putExtra("idloaisanpham",mangLoaiSp.get(position).getId());
+                            startActivity(intent);
+                        }else{
+                            CheckConnection.ShowToast_Short(getApplicationContext(),"Bạn hãy kiểm tra lại thông báo");
+                        }
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                }
+            }
+        });
     }
 
     private void AnhXa() {
