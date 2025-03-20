@@ -83,60 +83,70 @@ public class MainActivity extends AppCompatActivity {
         listViewManHinhChinh.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position){
+                switch (position) {
                     case 0:
-                        if(CheckConnection.haveNetworkConnection(getApplicationContext())){
+                        if (CheckConnection.haveNetworkConnection(getApplicationContext())) {
                             Intent intent = new Intent(MainActivity.this, MainActivity.class);
                             startActivity(intent);
-                        }else{
-                            CheckConnection.ShowToast_Short(getApplicationContext(),"Bạn hãy kiểm tra lại thông báo");
+                        } else {
+                            CheckConnection.ShowToast_Short(getApplicationContext(), "Bạn hãy kiểm tra lại kết nối");
                         }
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case 1:
-                        if(CheckConnection.haveNetworkConnection(getApplicationContext())){
+                        if (CheckConnection.haveNetworkConnection(getApplicationContext())) {
                             Intent intent = new Intent(MainActivity.this, DienThoaiActivity.class);
-                            intent.putExtra("idloaisanpham",mangLoaiSp.get(position).getId());
+                            intent.putExtra("idloaisanpham", mangLoaiSp.get(position).getId());
                             startActivity(intent);
-                        }else{
-                            CheckConnection.ShowToast_Short(getApplicationContext(),"Bạn hãy kiểm tra lại thông báo");
+                        } else {
+                            CheckConnection.ShowToast_Short(getApplicationContext(), "Bạn hãy kiểm tra lại kết nối");
                         }
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case 2:
-                        if(CheckConnection.haveNetworkConnection(getApplicationContext())){
+                        if (CheckConnection.haveNetworkConnection(getApplicationContext())) {
                             Intent intent = new Intent(MainActivity.this, LapTopActivity.class);
-                            intent.putExtra("idloaisanpham",mangLoaiSp.get(position).getId());
+                            intent.putExtra("idloaisanpham", mangLoaiSp.get(position).getId());
                             startActivity(intent);
-                        }else{
-                            CheckConnection.ShowToast_Short(getApplicationContext(),"Bạn hãy kiểm tra lại thông báo");
+                        } else {
+                            CheckConnection.ShowToast_Short(getApplicationContext(), "Bạn hãy kiểm tra lại kết nối");
                         }
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case 3:
-                        if(CheckConnection.haveNetworkConnection(getApplicationContext())){
+                        if (CheckConnection.haveNetworkConnection(getApplicationContext())) {
                             Intent intent = new Intent(MainActivity.this, LienHeActivity.class);
-                            intent.putExtra("idloaisanpham",mangLoaiSp.get(position).getId());
+                            intent.putExtra("idloaisanpham", mangLoaiSp.get(position).getId());
                             startActivity(intent);
-                        }else{
-                            CheckConnection.ShowToast_Short(getApplicationContext(),"Bạn hãy kiểm tra lại thông báo");
+                        } else {
+                            CheckConnection.ShowToast_Short(getApplicationContext(), "Bạn hãy kiểm tra lại kết nối");
                         }
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case 4:
-                        if(CheckConnection.haveNetworkConnection(getApplicationContext())){
+                        if (CheckConnection.haveNetworkConnection(getApplicationContext())) {
                             Intent intent = new Intent(MainActivity.this, ThongTinActivity.class);
-                            intent.putExtra("idloaisanpham",mangLoaiSp.get(position).getId());
+                            intent.putExtra("idloaisanpham", mangLoaiSp.get(position).getId());
                             startActivity(intent);
-                        }else{
-                            CheckConnection.ShowToast_Short(getApplicationContext(),"Bạn hãy kiểm tra lại thông báo");
+                        } else {
+                            CheckConnection.ShowToast_Short(getApplicationContext(), "Bạn hãy kiểm tra lại kết nối");
                         }
                         drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case 5: // Xử lý đăng xuất
+                        Toast.makeText(MainActivity.this, "Đăng xuất thành công", Toast.LENGTH_SHORT).show();
+
+                        // Chuyển về màn hình đăng nhập
+                        Intent logoutIntent = new Intent(MainActivity.this, Login.class);
+                        logoutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Xóa stack để tránh quay lại màn hình chính
+                        startActivity(logoutIntent);
+                        finish();
                         break;
                 }
             }
         });
     }
+
 
     private void AnhXa() {
         drawerLayout = findViewById(R.id.drawerLayout);
@@ -157,22 +167,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewManHinhChinh.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
         recyclerViewManHinhChinh.setAdapter(sanPhamAdapter);
 
-        //xử lý nút đăng xuất
-        listViewManHinhChinh.setOnItemClickListener((parent, view, position, id) -> {
-            LoaiSp loaiSp = mangLoaiSp.get(position);
-            if (loaiSp.getTenLoaiSp().equals("Đăng xuất")) {
-                // Hiển thị thông báo đăng xuất thành công
-                Toast.makeText(MainActivity.this, "Đăng xuất thành công!", Toast.LENGTH_SHORT).show();
-
-                // Chuyển đến màn hình đăng nhập sau một khoảng thời gian ngắn
-                new Handler().postDelayed(() -> {
-                    Intent intent = new Intent(MainActivity.this, Login.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Xóa hết các activity trước đó
-                    startActivity(intent);
-                    finish(); // Kết thúc MainActivity
-                }, 1000); // Đợi 1 giây để Toast hiển thị
-            }
-        });
 
 
     }

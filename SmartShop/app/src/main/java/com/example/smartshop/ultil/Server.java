@@ -1,7 +1,7 @@
 package com.example.smartshop.ultil;
 
 public class Server {
-    public static String localhost = "192.168.0.102";
+    public static String localhost = "192.168.209.102";
     //điện thoại 192.168.209.102
     //wifi    192.168.0.135
     //Kết nối localhost/phpmyadmin / localhost:3000 / http://localhost:3000 / php language

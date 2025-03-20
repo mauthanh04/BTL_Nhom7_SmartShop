@@ -1,5 +1,7 @@
 package com.example.smartshop.activity;
 
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +13,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
@@ -122,6 +125,12 @@ public class DienThoaiActivity extends AppCompatActivity {
             setSupportActionBar(toolbardt);
             if (getSupportActionBar() != null) {
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                Drawable navIcon = toolbardt.getNavigationIcon();
+                if (navIcon != null) {
+                    navIcon = DrawableCompat.wrap(navIcon);
+                    DrawableCompat.setTint(navIcon, Color.WHITE); 
+                    toolbardt.setNavigationIcon(navIcon);
+                }
             }
             toolbardt.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
@@ -133,6 +142,7 @@ public class DienThoaiActivity extends AppCompatActivity {
             Log.e("ToolbarError", "Toolbar is null");
         }
     }
+
 
     private void GetIdloaisp() {
         iddt = getIntent().getIntExtra("idloaisanpham",-1);
