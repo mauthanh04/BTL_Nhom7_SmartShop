@@ -5,58 +5,73 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="horizontal"
     tools:context=".activity.MainActivity">
+
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawerLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbarManHinhChinh"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@drawable/congnghe4"
                 app:title="Trang chính"
-                android:background="#03A9F4"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize">
+                app:titleTextColor="@color/white">
             </androidx.appcompat.widget.Toolbar>
-            <ViewFlipper
-                android:id="@+id/viewFlipper"
+
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="200dp">
-            </ViewFlipper>
+                android:layout_height="200dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardElevation="8dp">
+
+                <ViewFlipper
+                    android:id="@+id/viewFlipper"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </androidx.cardview.widget.CardView>
+
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#00BCD4">
+                android:background="@drawable/congnghe3"
+                android:orientation="vertical">
+
                 <TextView
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:textColor="#E91E1E"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:text="Sản phẩm mới nhất"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                </androidx.recyclerview.widget.RecyclerView>
+                    android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
             </LinearLayout>
         </LinearLayout>
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/navigationView"
-            android:layout_gravity="start"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_gravity="start">
+
             <ListView
                 android:id="@+id/listViewManHinhChinh"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </ListView>
+                android:layout_height="wrap_content"></ListView>
         </com.google.android.material.navigation.NavigationView>
 
     </androidx.drawerlayout.widget.DrawerLayout>
