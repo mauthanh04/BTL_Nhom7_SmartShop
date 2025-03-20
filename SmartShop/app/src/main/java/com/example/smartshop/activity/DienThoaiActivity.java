@@ -84,10 +84,10 @@ public class DienThoaiActivity extends AppCompatActivity {
                         for(int i = 0; i < jsonArray.length();i++){
                             JSONObject jsonObject = jsonArray.getJSONObject(i);
                             id = jsonObject.getInt("id");
-                            Tendt = jsonObject.getString("tensp");
-                            Giadt = jsonObject.getInt("giasp");
-                            Hinhanhdt = jsonObject.getString("hinhanhsp");
-                            Mota = jsonObject.getString("motasp");
+                            Tendt = jsonObject.getString("tensanpham");
+                            Giadt = jsonObject.getInt("giasanpham");
+                            Hinhanhdt = jsonObject.getString("hinhanhsanpham");
+                            Mota = jsonObject.getString("motasanpham");
                             Idspdt = jsonObject.getInt("idsanpham");
                             mangdt.add(new SanPham(id,Tendt,Giadt,Hinhanhdt,Mota,Idspdt));
                         }

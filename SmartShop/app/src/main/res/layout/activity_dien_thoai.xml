@@ -7,14 +7,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".activity.DienThoaiActivity">
-    <Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:background="@drawable/congnghe4"
         android:titleTextColor="@color/white"
         android:title="Điện thoại"
         android:id="@+id/toolbaldienthoai"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize">
-    </Toolbar>
+    </androidx.appcompat.widget.Toolbar>
     <ListView
         android:id="@+id/listviewdienthoai"
         android:layout_width="match_parent"

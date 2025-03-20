@@ -2,7 +2,7 @@
     include "connect.php";
     $page = $_GET['page'];
     $idsp = $_POST['idsanpham'];
-    $space = 5;
+    $space = 10;
     $limit = ($page - 1) * $space;
     $mangsanpham = array();
     $query = "SELECT * FROM sanpham WHERE idsanpham = $idsp LIMIT $limit, $space";
@@ -15,17 +15,18 @@
             $row['giasanpham'],
             $row['hinhanhsanpham'],
             $row['motasanpham'],
-            $row['idsanpham']))
-    }    
+            $row['idsanpham']
+        ));
+    }
     echo json_encode($mangsanpham);
 
     class Sanpham{
-        function Sanpham($id, $tensp, $giasp, $hinhanhsp, $motasp, $idsanpham){
+        function __construct($id, $tensanpham, $giasanpham, $hinhanhsanpham, $motasanpham, $idsanpham){
             $this->id = $id;
-            $this->tensp = $tensp;
-            $this->giasp = $giasp;
-            $this->hinhanhsp = $hinhanhsp;
-            $this->motatsp = $motasp;
+            $this->tensanpham = $tensanpham;
+            $this->giasanpham = $giasanpham;
+            $this->hinhanhsanpham = $hinhanhsanpham;
+            $this->motasanpham = $motasanpham;
             $this->idsanpham = $idsanpham;
         }
     }
