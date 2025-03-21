@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
             GetDuLieuSPMoiNhat();
             //CHANGE
             CatchOnItemListView();
+
         }
         else {
             CheckConnection.ShowToast_Short(getApplicationContext(), "Bạn hãy kiểm tra lại kết nối");

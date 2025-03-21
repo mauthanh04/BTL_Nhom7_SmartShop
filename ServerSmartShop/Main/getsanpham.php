@@ -2,7 +2,7 @@
     include "connect.php";
     $page = $_GET['page'];
     $idsp = $_POST['idsanpham'];
-    $space = 10;
+    $space = 5;
     $limit = ($page - 1) * $space;
     $mangsanpham = array();
     $query = "SELECT * FROM sanpham WHERE idsanpham = $idsp LIMIT $limit, $space";

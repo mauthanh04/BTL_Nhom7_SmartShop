@@ -1,12 +1,19 @@
 package com.example.smartshop.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 
@@ -47,6 +54,12 @@ public class DienThoaiActivity extends AppCompatActivity {
     int iddt = 0;
     int page = 1;
 
+    View footerview;
+    Boolean isLoading = false ;
+    Boolean limitdata = false;
+
+    mHandler mHandler;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,10 +76,39 @@ public class DienThoaiActivity extends AppCompatActivity {
             GetIdloaisp();
             ActionToolBar();
             GetData(page);
+
+            //Loadmore data
+            LoadMoreData();
         }else {
             CheckConnection.ShowToast_Short(getApplicationContext(), "Bạn hãy kiểm tra lại internet");
             finish();
         }
+    }
+
+    private void LoadMoreData() {
+        lvdt.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(), ChiPhiSanPham.class) ;
+                intent.putExtra("thongtinsanpham",mangdt.get(position)) ;
+                startActivity(intent) ;
+            }
+        });
+        lvdt.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                if(firstVisibleItem + visibleItemCount == totalItemCount && totalItemCount != 0 && isLoading == false){
+                    isLoading = true;
+                    ThreadData threadData = new ThreadData();
+                    threadData.start() ;
+                }
+            }
+        });
     }
 
     private void GetData(int Page) {
@@ -81,7 +123,8 @@ public class DienThoaiActivity extends AppCompatActivity {
                 String Hinhanhdt = "";
                 String Mota = "";
                 int Idspdt = 0;
-                if(response != null && mangdt != null){
+                if(response != null && response.length() != 2 && mangdt != null){
+                    lvdt.removeFooterView(footerview);
                     try{
                         JSONArray jsonArray = new JSONArray(response);
                         for(int i = 0; i < jsonArray.length();i++){
@@ -100,6 +143,10 @@ public class DienThoaiActivity extends AppCompatActivity {
                     }catch (JSONException e){
                         Log.e("JSONError", "Lỗi phân tích JSON", e);
                     }
+                }else{
+                    limitdata = true;
+                    lvdt.removeFooterView(footerview);
+                    CheckConnection.ShowToast_Short(getApplicationContext(),"Đã hết dữ liệu");
                 }
             }
         }, new Response.ErrorListener() {
@@ -160,5 +207,41 @@ public class DienThoaiActivity extends AppCompatActivity {
         mangdt = new ArrayList<>();
         dienthoaiAdapter = new DienthoaiAdapter(getApplicationContext(),mangdt);
         lvdt.setAdapter(dienthoaiAdapter);
+
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE) ;
+        footerview = inflater.inflate(R.layout.progressbar,null) ;
+        mHandler = new mHandler() ;
+    }
+
+    public class mHandler extends Handler{
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            switch (msg.what){
+                case 0:
+                    lvdt.addFooterView(footerview);
+                    break;
+                case 1:
+                    page++;
+                    GetData(page);
+                    isLoading = true;
+                    break;
+            }
+            super.handleMessage(msg);
+        }
+    }
+
+    public class ThreadData extends Thread{
+        @Override
+        public void run() {
+            mHandler.sendEmptyMessage(0);
+            try{
+                Thread.sleep(3000);
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }
+            Message message = mHandler.obtainMessage(1) ;
+            mHandler.sendMessage(message);
+            super.run();
+        }
     }
 }
