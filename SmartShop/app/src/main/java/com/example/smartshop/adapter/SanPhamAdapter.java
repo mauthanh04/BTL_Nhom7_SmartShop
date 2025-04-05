@@ -1,6 +1,7 @@
 package com.example.smartshop.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +11,9 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smartshop.R;
+import com.example.smartshop.activity.ChiTietSanPham;
 import com.example.smartshop.model.SanPham;
+import com.example.smartshop.ultil.CheckConnection;
 import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
@@ -33,6 +36,16 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ItemHold
             imgHinhAnhSP = (ImageView) itemView.findViewById(R.id.imageviewSanPham);
             txtGiaSP = (TextView) itemView.findViewById(R.id.textviewGiaSP);
             txtTenSP = (TextView) itemView.findViewById(R.id.textviewTenSP);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, ChiTietSanPham.class);
+                    intent.putExtra("thongtinsanpham", arraySanPham.get(getPosition()));
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    CheckConnection.ShowToast_Short(context, arraySanPham.get(getPosition()).getTenSanPham());
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 

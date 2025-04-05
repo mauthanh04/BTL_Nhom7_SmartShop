@@ -2,7 +2,6 @@ package com.example.smartshop.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -106,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 2:
                         if (CheckConnection.haveNetworkConnection(getApplicationContext())) {
-                            Intent intent = new Intent(MainActivity.this, LapTopActivity.class);
+                            Intent intent = new Intent(MainActivity.this, MayTinhActivity.class);
                             intent.putExtra("idloaisanpham", mangLoaiSp.get(position).getId());
                             startActivity(intent);
                         } else {

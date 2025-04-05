@@ -89,7 +89,7 @@ public class DienThoaiActivity extends AppCompatActivity {
         lvdt.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(), ChiPhiSanPham.class) ;
+                Intent intent = new Intent(getApplicationContext(), ChiTietSanPham.class) ;
                 intent.putExtra("thongtinsanpham",mangdt.get(position)) ;
                 startActivity(intent) ;
             }
