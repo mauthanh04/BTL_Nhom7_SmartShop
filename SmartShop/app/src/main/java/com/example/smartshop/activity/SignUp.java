@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +21,8 @@ import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
 public class SignUp extends AppCompatActivity {
 
-    EditText editTextFullName, editTextUserName, editTextPassword, editTextEmail;
+    EditText editTextEmail, editTextMatKhau, editTextHoTen;
+    RadioGroup radioGroupVaiTro;
     Button buttonSignUp;
     TextView textViewLogin;
     ProgressBar progressBar;
@@ -30,10 +32,11 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        editTextFullName = findViewById(R.id.fullname);
-        editTextUserName = findViewById(R.id.username);
-        editTextPassword = findViewById(R.id.password);
+        // Ánh xạ
         editTextEmail = findViewById(R.id.email);
+        editTextMatKhau = findViewById(R.id.matkhau);
+        radioGroupVaiTro = findViewById(R.id.roleRadioGroup); // Sử dụng RadioGroup thay vì EditText
+        editTextHoTen = findViewById(R.id.hoten);
         buttonSignUp = findViewById(R.id.buttonSignUp);
         textViewLogin = findViewById(R.id.loginText);
         progressBar = findViewById(R.id.progress);
@@ -47,58 +50,64 @@ public class SignUp extends AppCompatActivity {
 
         // Xử lý sự kiện khi nhấn nút đăng ký
         buttonSignUp.setOnClickListener(v -> {
-            String fullname = editTextFullName.getText().toString().trim();
-            String username = editTextUserName.getText().toString().trim();
-            String password = editTextPassword.getText().toString().trim();
             String email = editTextEmail.getText().toString().trim();
+            String matkhau = editTextMatKhau.getText().toString().trim();
+            String hoten = editTextHoTen.getText().toString().trim();
 
-            // Kiểm tra các trường không được bỏ trống
-            if (fullname.isEmpty()) {
-                editTextFullName.setError("Họ tên không được bỏ trống!");
-                editTextFullName.requestFocus();
+            // Lấy giá trị từ RadioGroup
+            int selectedRoleId = radioGroupVaiTro.getCheckedRadioButtonId();
+            String vaitro;
+            if (selectedRoleId == R.id.radioUser) {
+                vaitro = "user";
+            } else if (selectedRoleId == R.id.radioAdmin) {
+                vaitro = "admin";
+            } else {
+                Toast.makeText(getApplicationContext(), "Vui lòng chọn vai trò!", Toast.LENGTH_SHORT).show();
                 return;
             }
+
+            // Kiểm tra các trường không được bỏ trống
             if (email.isEmpty()) {
                 editTextEmail.setError("Email không được bỏ trống!");
                 editTextEmail.requestFocus();
                 return;
             }
-
             // Kiểm tra định dạng email hợp lệ
             if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 editTextEmail.setError("Email không hợp lệ!");
                 editTextEmail.requestFocus();
                 return;
             }
-            if (username.isEmpty()) {
-                editTextUserName.setError("Tên đăng nhập không được bỏ trống!");
-                editTextUserName.requestFocus();
+            if (matkhau.isEmpty()) {
+                editTextMatKhau.setError("Mật khẩu không được bỏ trống!");
+                editTextMatKhau.requestFocus();
                 return;
             }
-            if (password.isEmpty()) {
-                editTextPassword.setError("Mật khẩu không được bỏ trống!");
-                editTextPassword.requestFocus();
-                return;
-            }
-
             // Kiểm tra độ dài mật khẩu (ít nhất 6 ký tự)
-            if (password.length() < 6) {
-                editTextPassword.setError("Mật khẩu phải có ít nhất 6 ký tự!");
-                editTextPassword.requestFocus();
+            if (matkhau.length() < 6) {
+                editTextMatKhau.setError("Mật khẩu phải có ít nhất 6 ký tự!");
+                editTextMatKhau.requestFocus();
+                return;
+            }
+            if (hoten.isEmpty()) {
+                editTextHoTen.setError("Họ tên không được bỏ trống!");
+                editTextHoTen.requestFocus();
                 return;
             }
 
             // Tiến hành đăng ký nếu dữ liệu hợp lệ
             progressBar.setVisibility(View.VISIBLE);
+
             Handler handler = new Handler(Looper.getMainLooper());
             handler.post(() -> {
-                String[] field = {"fullname", "username", "password", "email"};
-                String[] data = {fullname, username, password, email};
+                String[] field = {"email", "matkhau", "vaitro", "hoten"};
+                String[] data = {email, matkhau, vaitro, hoten};
 
                 PutData putData = new PutData(Server.DuongDanSignUp, "POST", field, data);
                 if (putData.startPut()) {
                     if (putData.onComplete()) {
                         progressBar.setVisibility(View.GONE);
+
                         String result = putData.getResult();
                         switch (result) {
                             case "Sign Up Success":
@@ -109,9 +118,6 @@ public class SignUp extends AppCompatActivity {
                                 break;
                             case "Email already in use":
                                 Toast.makeText(getApplicationContext(), "Email đã được sử dụng!", Toast.LENGTH_SHORT).show();
-                                break;
-                            case "Username already exists":
-                                Toast.makeText(getApplicationContext(), "Tên đăng nhập đã tồn tại!", Toast.LENGTH_SHORT).show();
                                 break;
                             default:
                                 Toast.makeText(getApplicationContext(), "Đăng ký thất bại!", Toast.LENGTH_SHORT).show();

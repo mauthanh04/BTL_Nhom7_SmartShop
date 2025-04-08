@@ -1,4 +1,4 @@
-package com.example.smartshop.activity;
+package com.example.smartshop.activity.User;
 
 import android.content.Intent;
 import android.graphics.Color;
