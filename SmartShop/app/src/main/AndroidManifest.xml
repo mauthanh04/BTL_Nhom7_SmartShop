@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -15,25 +15,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppOrderFood"
         android:usesCleartextTraffic="true"
-        tools:targetApi="31">
+        tools:targetApi="31" >
         <activity
-            android:name=".activity.ChiTietSanPham"
+            android:name=".activity.Admin.MainAdminActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.ThongTinActivity"
+            android:name=".activity.User.LienHeActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.LienHeActivity"
+            android:name=".activity.User.MayTinhActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.MayTinhActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.DienThoaiActivity"
+            android:name=".activity.User.DienThoaiActivity"
             android:exported="false" />
         <activity
             android:name=".activity.Login"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -44,7 +41,7 @@
             android:name=".activity.SignUp"
             android:exported="true" />
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".activity.User.MainUserActivity"
             android:exported="true" />
     </application>
 

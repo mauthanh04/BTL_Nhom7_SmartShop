@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.DienThoaiActivity">
+    tools:context=".activity.User.DienThoaiActivity">
     <androidx.appcompat.widget.Toolbar
         android:background="@drawable/congnghe4"
        app:titleTextColor="@color/white"

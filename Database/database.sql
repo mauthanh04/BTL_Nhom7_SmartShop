@@ -26,7 +26,7 @@ CREATE TABLE sanpham (
     giasanpham INT(15) NOT NULL,
     hinhanhsanpham VARCHAR(200) NOT NULL,
     motasanpham VARCHAR(10000) NOT NULL,
-    idsanpham INT(3) NOT NULL
+    idsanpham INT(3) NOT NULL,
     CONSTRAINT fk_sanpham_loaisanpham FOREIGN KEY (idsanpham) REFERENCES loaisanpham(id)
     ON DELETE CASCADE 
     ON UPDATE CASCADE

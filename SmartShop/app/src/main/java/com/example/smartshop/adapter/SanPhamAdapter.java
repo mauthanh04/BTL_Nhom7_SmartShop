@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smartshop.R;
-import com.example.smartshop.activity.ChiTietSanPham;
+import com.example.smartshop.activity.User.ChiTietSanPham;
 import com.example.smartshop.model.SanPham;
 import com.example.smartshop.ultil.CheckConnection;
 import com.squareup.picasso.Picasso;

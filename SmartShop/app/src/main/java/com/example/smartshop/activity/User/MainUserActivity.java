@@ -1,4 +1,4 @@
-package com.example.smartshop.activity;
+package com.example.smartshop.activity.User;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,6 +24,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.smartshop.R;
+import com.example.smartshop.activity.Login;
 import com.example.smartshop.adapter.LoaiSpAdapter;
 import com.example.smartshop.adapter.SanPhamAdapter;
 import com.example.smartshop.model.LoaiSp;
@@ -40,7 +41,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity {
+public class MainUserActivity extends AppCompatActivity {
     //Khai báo biến
     DrawerLayout drawerLayout;
     Toolbar toolbar;
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_user);
         //khoi tạo các thành phần giao diện
         AnhXa();
         if(CheckConnection.haveNetworkConnection(getApplicationContext())){
@@ -86,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (position) {
                     case 0:
                         if (CheckConnection.haveNetworkConnection(getApplicationContext())) {
-                            Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                            Intent intent = new Intent(MainUserActivity.this, MainUserActivity.class);
                             startActivity(intent);
                         } else {
                             CheckConnection.ShowToast_Short(getApplicationContext(), "Bạn hãy kiểm tra lại kết nối");
@@ -95,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 1:
                         if (CheckConnection.haveNetworkConnection(getApplicationContext())) {
-                            Intent intent = new Intent(MainActivity.this, DienThoaiActivity.class);
+                            Intent intent = new Intent(MainUserActivity.this, DienThoaiActivity.class);
                             intent.putExtra("idloaisanpham", mangLoaiSp.get(position).getId());
                             startActivity(intent);
                         } else {
@@ -105,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 2:
                         if (CheckConnection.haveNetworkConnection(getApplicationContext())) {
-                            Intent intent = new Intent(MainActivity.this, MayTinhActivity.class);
+                            Intent intent = new Intent(MainUserActivity.this, MayTinhActivity.class);
                             intent.putExtra("idloaisanpham", mangLoaiSp.get(position).getId());
                             startActivity(intent);
                         } else {
@@ -115,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 3:
                         if (CheckConnection.haveNetworkConnection(getApplicationContext())) {
-                            Intent intent = new Intent(MainActivity.this, LienHeActivity.class);
+                            Intent intent = new Intent(MainUserActivity.this, LienHeActivity.class);
                             intent.putExtra("idloaisanpham", mangLoaiSp.get(position).getId());
                             startActivity(intent);
                         } else {
@@ -125,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 4:
                         if (CheckConnection.haveNetworkConnection(getApplicationContext())) {
-                            Intent intent = new Intent(MainActivity.this, ThongTinActivity.class);
+                            Intent intent = new Intent(MainUserActivity.this, ThongTinActivity.class);
                             intent.putExtra("idloaisanpham", mangLoaiSp.get(position).getId());
                             startActivity(intent);
                         } else {
@@ -134,10 +135,10 @@ public class MainActivity extends AppCompatActivity {
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case 5: // Xử lý đăng xuất
-                        Toast.makeText(MainActivity.this, "Đăng xuất thành công", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainUserActivity.this, "Đăng xuất thành công", Toast.LENGTH_SHORT).show();
 
                         // Chuyển về màn hình đăng nhập
-                        Intent logoutIntent = new Intent(MainActivity.this, Login.class);
+                        Intent logoutIntent = new Intent(MainUserActivity.this, Login.class);
                         logoutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Xóa stack để tránh quay lại màn hình chính
                         startActivity(logoutIntent);
                         finish();
