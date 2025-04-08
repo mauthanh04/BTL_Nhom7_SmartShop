@@ -4,27 +4,20 @@ $db = new DataBase();
 
 try {
     // Kiểm tra các trường có được gửi lên không
-    if (isset($_POST['fullname']) && isset($_POST['email']) && isset($_POST['username']) && isset($_POST['password'])) {
-        $fullname = $_POST['fullname'];
+    if (isset($_POST['email']) && isset($_POST['matkhau']) && isset($_POST['vaitro']) && isset($_POST['hoten'])) {
         $email = $_POST['email'];
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+        $matkhau = $_POST['matkhau'];
+        $vaitro = $_POST['vaitro'];
+        $hoten = $_POST['hoten'];
 
         // Kiểm tra dữ liệu không được để trống
-        if (empty($fullname) || empty($email) || empty($username) || empty($password)) {
+        if (empty($email) || empty($matkhau) || empty($vaitro) || empty($hoten)) {
             throw new Exception("All fields are required");
         }
 
         // Kiểm tra kết nối database
         if (!$db->dbConnect()) {
             throw new Exception("Error: Database connection");
-        }
-
-        // Kiểm tra tên đăng nhập đã tồn tại chưa
-        $checkUserQuery = "SELECT * FROM users WHERE username = '$username'";
-        $checkUserResult = mysqli_query($db->connect, $checkUserQuery);
-        if (mysqli_num_rows($checkUserResult) > 0) {
-            throw new Exception("Username already exists");
         }
 
         // Kiểm tra email đã tồn tại chưa
@@ -34,11 +27,11 @@ try {
             throw new Exception("Email already in use");
         }
 
-        // Thực hiện đăng ký tài khoản
-        if ($db->signUp("users", $fullname, $email, $username, $password)) {
+        // Đăng ký tài khoản qua hàm signUp
+        if ($db->signUp("users", $email, $matkhau, $vaitro, $hoten)) {
             echo "Sign Up Success";
         } else {
-            throw new Exception("Sign up Failed");
+            throw new Exception("Sign Up Failed");
         }
     } else {
         throw new Exception("All fields are required");

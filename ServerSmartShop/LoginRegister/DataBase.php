@@ -34,33 +34,36 @@ class DataBase
         return mysqli_real_escape_string($this->connect, stripslashes(htmlspecialchars($data)));
     }
 
-    function logIn($table, $username, $password)
+    function logIn($table, $email, $matkhau)
     {
-        $username = $this->prepareData($username);
-        $password = $this->prepareData($password);
-        $this->sql = "select * from " . $table . " where username = '" . $username . "'";
+        $email = $this->prepareData($email);
+        $matkhau = $this->prepareData($matkhau);
+        $this->sql = "SELECT * FROM " . $table . " WHERE Email = '" . $email . "'";
         $result = mysqli_query($this->connect, $this->sql);
-        $row = mysqli_fetch_assoc($result);
-        if (mysqli_num_rows($result) != 0) {
-            $dbusername = $row['username'];
-            $dbpassword = $row['password'];
-            if ($dbusername == $username && password_verify($password, $dbpassword)) {
-                $login = true;
-            } else $login = false;
-        } else $login = false;
 
-        return $login;
+        if ($result && mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
+            $dbMatKhau = $row['matkhau'];
+            $vaitro = $row['vaitro'];
+            
+            if (password_verify($matkhau, $dbMatKhau)) {
+                return "Login Success" . $vaitro;
+            } else {
+                return "Invalid Email or Password";
+            }
+        } else {
+            return "Invalid Email or Password";
+        }
     }
 
-    function signUp($table, $fullname, $email, $username, $password)
+    function signUp($table, $email, $matkhau, $vaitro, $hoten)
     {
-        $fullname = $this->prepareData($fullname);
-        $username = $this->prepareData($username);
-        $password = $this->prepareData($password);
         $email = $this->prepareData($email);
-        $password = password_hash($password, PASSWORD_DEFAULT);
-        $this->sql =
-            "INSERT INTO " . $table . " (fullname, username, password, email) VALUES ('" . $fullname . "','" . $username . "','" . $password . "','" . $email . "')";
+        $matkhau = $this->prepareData($matkhau);
+        $vaitro = $this->prepareData($vaitro);
+        $hoten = $this->prepareData($hoten);
+        $matkhau = password_hash($matkhau, PASSWORD_DEFAULT);
+        $this->sql = "INSERT INTO " . $table . " (email, matkhau, vaitro, hoten) VALUES ('" . $email . "', '" . $matkhau . "', '" . $vaitro . "', '" . $hoten . "')";
         if (mysqli_query($this->connect, $this->sql)) {
             return true;
         } else return false;
