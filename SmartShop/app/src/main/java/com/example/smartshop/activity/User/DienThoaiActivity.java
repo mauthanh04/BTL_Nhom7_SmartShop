@@ -53,11 +53,9 @@ public class DienThoaiActivity extends AppCompatActivity {
     ArrayList<SanPham> mangdt;
     int iddt = 0;
     int page = 1;
-
     View footerview;
     Boolean isLoading = false ;
     Boolean limitdata = false;
-
     mHandler mHandler;
 
 
@@ -99,7 +97,6 @@ public class DienThoaiActivity extends AppCompatActivity {
             public void onScrollStateChanged(AbsListView view, int scrollState) {
 
             }
-
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
                 if(firstVisibleItem + visibleItemCount == totalItemCount && totalItemCount != 0 && isLoading == false){
