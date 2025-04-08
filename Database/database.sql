@@ -4,10 +4,10 @@ USE smartshop;
 
 CREATE TABLE users (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    fullname TEXT,
-    username VARCHAR(100) UNIQUE,
-    password TEXT,
-    email VARCHAR(300) UNIQUE
+    email VARCHAR(255) NOT NULL UNIQUE,
+    matkhau VARCHAR(255) NOT NULL,
+    vaitro ENUM('user', 'admin') NOT NULL,
+    hoten VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE loaisanpham (
