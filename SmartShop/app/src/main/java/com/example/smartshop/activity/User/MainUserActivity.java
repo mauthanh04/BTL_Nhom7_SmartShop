@@ -2,6 +2,8 @@ package com.example.smartshop.activity.User;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -11,6 +13,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -27,6 +30,7 @@ import com.example.smartshop.R;
 import com.example.smartshop.activity.Login;
 import com.example.smartshop.adapter.LoaiSpAdapter;
 import com.example.smartshop.adapter.SanPhamAdapter;
+import com.example.smartshop.model.GioHang;
 import com.example.smartshop.model.LoaiSp;
 import com.example.smartshop.model.SanPham;
 import com.example.smartshop.ultil.CheckConnection;
@@ -57,12 +61,16 @@ public class MainUserActivity extends AppCompatActivity {
     ArrayList<SanPham> mangSanPham;
     SanPhamAdapter sanPhamAdapter;
 
+    //gio hang
+    public static ArrayList<GioHang> manggiohang;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_user);
         //khoi tạo các thành phần giao diện
         AnhXa();
+        //
         if(CheckConnection.haveNetworkConnection(getApplicationContext())){
             actionBar();
             actionViewFlipper();
@@ -70,13 +78,31 @@ public class MainUserActivity extends AppCompatActivity {
             GetDuLieuSPMoiNhat();
             //CHANGE
             CatchOnItemListView();
-
         }
         else {
             CheckConnection.ShowToast_Short(getApplicationContext(), "Bạn hãy kiểm tra lại kết nối");
             finish();
         }
+        //gio hang
+        if (manggiohang == null) {
+            manggiohang = new ArrayList<>();
+        }
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.menugiohang) {
+            Intent intent = new Intent(getApplicationContext(), Giohang.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     //CHANGE : Chuyển trang khi ấn vào các loại sản phẩm ở listview
@@ -168,7 +194,9 @@ public class MainUserActivity extends AppCompatActivity {
         recyclerViewManHinhChinh.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
         recyclerViewManHinhChinh.setAdapter(sanPhamAdapter);
 
-
+//        if (manggiohang == null) {
+//            manggiohang = new ArrayList<>();
+//        }
 
     }
 
@@ -190,14 +218,12 @@ public class MainUserActivity extends AppCompatActivity {
         mangQuangCao.add("https://cdn.nguyenkimmall.com/images/companies/_1/Content/video-PDP/iphone-16-pro-iphone-16-pro-max-sa-mac.jpg");
         mangQuangCao.add("https://png.pngtree.com/background/20230519/original/pngtree-dozens-of-electronic-devices-on-a-table-picture-image_2661915.jpg");
         mangQuangCao.add("https://cellphones.com.vn/sforum/wp-content/uploads/2019/05/Honor-20-Pro-lo-anh-quang-cao-1.jpg");
-
         for(int i = 0; i< mangQuangCao.size();i++){
             ImageView imageView = new ImageView(getApplicationContext());       //tạo một ImageView mới để chứa ảnh
             Picasso.get().load(mangQuangCao.get(i)).into(imageView);            //Sử dụng thư viện Picasso để tải ảnh từ URL vào ImageView
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);                 //Cài đặt để ảnh tự động co giãn theo kích thước của ViewFlipper
             viewFlipper.addView(imageView);
         }
-
         viewFlipper.setFlipInterval(5000);  //Thiết lập thời gian hiển thị mỗi ảnh trong 5 giây trước khi chuyển sang ảnh tiếp theo
         viewFlipper.setAutoStart(true);     //Bật chế độ tự động chuyển đổi giữa các ảnh
         //Thêm hiệu ứng chuyển động
