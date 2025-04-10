@@ -23,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="@drawable/congnghe4"
-                app:title="Trang chính"
+                app:title="Trang chính Admin"
                 app:titleTextColor="@color/white">
             </androidx.appcompat.widget.Toolbar>
 

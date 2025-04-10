@@ -40,7 +40,7 @@ public class QuanLyDonHangAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_don_hang, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.dong_don_hang, parent, false);
             holder = new ViewHolder();
             holder.tvTenKhachHang = convertView.findViewById(R.id.tvTenKhachHang);
             holder.tvEmail = convertView.findViewById(R.id.tvEmail);

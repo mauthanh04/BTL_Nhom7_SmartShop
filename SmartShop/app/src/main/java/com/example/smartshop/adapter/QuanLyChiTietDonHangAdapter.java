@@ -40,7 +40,7 @@ public class QuanLyChiTietDonHangAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_chi_tiet_don_hang, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.dong_chi_tiet_don_hang, parent, false);
             holder = new ViewHolder();
             holder.tvTenSanPham = convertView.findViewById(R.id.tvTenSanPham);
             holder.tvMaSanPham = convertView.findViewById(R.id.tvMaSanPham);
