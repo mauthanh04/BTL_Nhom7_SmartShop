@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.google.android.libraries.mapsplatform.secrets.gradle.plugin)
 }
 
 android {
@@ -29,9 +30,13 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
+
 
     implementation(libs.appcompat)
     implementation(libs.material)
@@ -52,4 +57,8 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.android.gms:play-services-maps:18.2.0")  // Google Maps
+    implementation("androidx.cardview:cardview:1.0.0")                 // CardView
+    implementation("org.osmdroid:osmdroid-android:6.1.16")
 }
