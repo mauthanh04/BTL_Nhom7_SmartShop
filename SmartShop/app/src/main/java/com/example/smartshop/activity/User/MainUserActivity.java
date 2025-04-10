@@ -194,10 +194,6 @@ public class MainUserActivity extends AppCompatActivity {
         recyclerViewManHinhChinh.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
         recyclerViewManHinhChinh.setAdapter(sanPhamAdapter);
 
-//        if (manggiohang == null) {
-//            manggiohang = new ArrayList<>();
-//        }
-
     }
 
     private void actionBar() {

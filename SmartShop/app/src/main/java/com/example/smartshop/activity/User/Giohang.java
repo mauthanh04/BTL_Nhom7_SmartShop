@@ -26,6 +26,7 @@ import com.example.smartshop.adapter.GiohangAdapter;
 import com.example.smartshop.ultil.CheckConnection;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 public class Giohang extends AppCompatActivity {
     ListView lvgiohang;
@@ -40,12 +41,17 @@ public class Giohang extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_giohang);
+
+//        if (MainUserActivity.manggiohang == null) {
+//            MainUserActivity.manggiohang = new ArrayList<>();
+//        }
         Anhxa();
         ActionToolbar();
         CheckData();
         EventUltil();
         CatchOnItemListView();
         EventButton(); //nút thanh toán giỏ hàng
+
     }
 
     private void EventButton() {

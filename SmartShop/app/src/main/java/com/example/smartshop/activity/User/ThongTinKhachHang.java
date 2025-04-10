@@ -1,5 +1,6 @@
 package com.example.smartshop.activity.User;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,6 +25,10 @@ import com.android.volley.toolbox.Volley;
 import com.example.smartshop.R;
 import com.example.smartshop.ultil.CheckConnection;
 import com.example.smartshop.ultil.Server;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -65,8 +70,54 @@ public class ThongTinKhachHang extends AppCompatActivity {
                     RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
                     StringRequest stringRequest = new StringRequest(Request.Method.POST, Server.Duongdandonhang, new Response.Listener<String>() {
                         @Override
-                        public void onResponse(String response) {
-                            Log.d("madonhang",response);
+                        public void onResponse(final String madonhang) {
+                            Log.d("madonhang",madonhang);
+                            if(Integer.parseInt(madonhang) > 0){
+                                RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+                                StringRequest request = new StringRequest(Request.Method.POST, Server.Duongdanchitietdonhang, new Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
+                                        Log.d("chitietdonhang_response", response);
+                                        if(response.trim().equals("1")){
+                                            MainUserActivity.manggiohang.clear();
+                                            CheckConnection.ShowToast_Short(getApplicationContext(),"Bạn đã thêm dữ liệu giỏ hàng thành công");
+                                            Intent intent = new Intent(getApplicationContext(), MainUserActivity.class);
+                                            startActivity(intent);
+                                            CheckConnection.ShowToast_Short(getApplicationContext(),"Mời bạn tiếp tục mua hàng");
+                                        }else{
+                                            CheckConnection.ShowToast_Short(getApplicationContext(),"Dữ liệu giỏ hàng bị lỗi");
+                                        }
+                                    }
+                                }, new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+
+                                    };
+                                }){
+                                    @Nullable
+                                    @Override
+                                    protected Map<String, String> getParams() throws AuthFailureError {
+                                        JSONArray jsonArray = new JSONArray();
+                                        for(int i=0;i<MainUserActivity.manggiohang.size();i++){
+                                            JSONObject jsonObject = new JSONObject();
+                                            try {
+                                                jsonObject.put("madonhang",madonhang);
+                                                jsonObject.put("masanpham",MainUserActivity.manggiohang.get(i).getIdsp());
+                                                jsonObject.put("tensanpham",MainUserActivity.manggiohang.get(i).getTensp());
+                                                jsonObject.put("giasanpham",MainUserActivity.manggiohang.get(i).getGiasp());
+                                                jsonObject.put("soluongsanpham",MainUserActivity.manggiohang.get(i).getSoluongsp());
+                                            } catch (JSONException e) {
+                                                throw new RuntimeException(e);
+                                            }
+                                            jsonArray.put(jsonObject);
+                                        }
+                                        HashMap<String,String> hashMap = new HashMap<String,String>();
+                                        hashMap.put("json",jsonArray.toString());
+                                        return hashMap;
+                                    }
+                                };
+                                queue.add(request);
+                            }
                         }
                     }, new Response.ErrorListener() {
                         @Override
