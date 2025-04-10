@@ -17,7 +17,7 @@
             android:layout_margin="5dp"
             android:src="@drawable/ic_launcher_background" />
     </LinearLayout>
-    
+
     <LinearLayout
         android:layout_weight="7"
         android:layout_width="0dp"

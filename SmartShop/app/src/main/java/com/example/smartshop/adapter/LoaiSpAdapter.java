@@ -59,7 +59,6 @@ public class LoaiSpAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) view.getTag(); // Lấy lại ViewHolder từ tag
         }
-
         // Đảm bảo object không null trước khi truy cập thuộc tính
         LoaiSp loaiSp = (LoaiSp) getItem(i);
         if (loaiSp != null) {

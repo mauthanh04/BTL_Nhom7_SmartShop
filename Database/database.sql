@@ -4,10 +4,10 @@ USE smartshop;
 
 CREATE TABLE users (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    fullname TEXT,
-    username VARCHAR(100) UNIQUE,
-    password TEXT,
-    email VARCHAR(300) UNIQUE
+    email VARCHAR(255) NOT NULL UNIQUE,
+    matkhau VARCHAR(255) NOT NULL,
+    vaitro ENUM('user', 'admin') NOT NULL,
+    hoten VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE loaisanpham (
@@ -26,7 +26,10 @@ CREATE TABLE sanpham (
     giasanpham INT(15) NOT NULL,
     hinhanhsanpham VARCHAR(200) NOT NULL,
     motasanpham VARCHAR(10000) NOT NULL,
-    idsanpham INT(3) NOT NULL
+    idsanpham INT(3) NOT NULL,
+    CONSTRAINT fk_sanpham_loaisanpham FOREIGN KEY (idsanpham) REFERENCES loaisanpham(id)
+    ON DELETE CASCADE 
+    ON UPDATE CASCADE
 ) ENGINE=InnoDB;
 
 INSERT INTO sanpham (tensanpham, giasanpham, hinhanhsanpham, motasanpham, idsanpham) VALUES
@@ -34,7 +37,7 @@ INSERT INTO sanpham (tensanpham, giasanpham, hinhanhsanpham, motasanpham, idsanp
 'Vsmart Joy 4 64GB là smartphone giá rẻ với màn hình 6.53 inch Full HD+, mang lại hình ảnh sắc nét. Máy trang bị chip Snapdragon 665, 4GB RAM, 64GB ROM (hỗ trợ thẻ nhớ), đảm bảo hiệu năng ổn định. Hệ thống 4 camera sau (16MP + 8MP + 2MP + 2MP) cùng camera selfie 13MP cho ảnh chụp đa dạng. Viên pin 5000mAh hỗ trợ sạc nhanh 18W, dùng lâu dài. Cảm biến vân tay mặt lưng, nhận diện khuôn mặt giúp mở khóa nhanh. Chạy VOS 3.0 (Android 10), máy phù hợp với người dùng phổ thông muốn trải nghiệm mượt mà với mức giá hợp lý.', 1),
 ('Lenovo IdeaPad 3 14ITL6', 8990000, 'https://cdn.tgdd.vn/Products/Images/44/269603/lenovo-ideapad-3-14itl6-i5-82h700wavn-thumb-ko-den-600x600.jpg', 
 'Lenovo IdeaPad 3 14ITL6 là chiếc laptop phổ thông với thiết kế gọn nhẹ, màn hình 14 inch Full HD cho hình ảnh sắc nét. Máy trang bị vi xử lý Intel Core i3-1115G4, 8GB RAM và 256GB SSD, đảm bảo hiệu suất ổn định cho học tập và làm việc. Bàn phím có hành trình tốt, touchpad nhạy. Hỗ trợ đầy đủ cổng kết nối USB-A, USB-C, HDMI, jack tai nghe tiện lợi. Viên pin 45Wh cho thời gian sử dụng dài, hỗ trợ sạc nhanh. Hệ điều hành Windows 11 bản quyền mang đến trải nghiệm mượt mà, phù hợp cho sinh viên và nhân viên văn phòng.', 2),
-('Redmi Note 12 4G 128GB', 4990000, 'https://cdn.tgdd.vn/Products/Images/44/269603/lenovo-ideapad-3-14itl6-i5-82h700wavn-thumb-ko-den-600x600.jpg', 
+('Redmi Note 12 4G 128GB', 4990000, 'https://cdn.tgdd.vn/Products/Images/42/304182/xiaomi-redmi-note-12-4g-mono-xanh-600x600.jpg', 
 'Redmi Note 12 4G 128GB sở hữu thiết kế hiện đại với màn hình 6.67 inch AMOLED Full HD+, tần số quét 120Hz cho trải nghiệm mượt mà. Máy trang bị chip Snapdragon 685, RAM 6GB, bộ nhớ trong 128GB, đảm bảo hiệu suất ổn định khi chơi game và đa nhiệm. Cụm camera sau 50MP + 8MP + 2MP chụp ảnh sắc nét, camera trước 13MP hỗ trợ selfie đẹp. Viên pin 5000mAh kết hợp sạc nhanh 33W, sử dụng thoải mái cả ngày. Chạy hệ điều hành MIUI 14 trên Android 13, có jack tai nghe 3.5mm, mở khóa vân tay cạnh viền, phù hợp với người dùng phổ thông.', 1),
 ('HP Pavilion 14-dv0007TU', 12990000, 'https://phucanhcdn.com/media/product/43121_pavilion_14_dv_gold_ha1.jpg', 
 'HP Pavilion 14-dv0007TU là chiếc laptop mỏng nhẹ, sang trọng với màn hình 14 inch Full HD, viền mỏng cho trải nghiệm hình ảnh sắc nét. Máy được trang bị vi xử lý Intel Core i3-1115G4, RAM 4GB DDR4, SSD 256GB giúp khởi động nhanh và xử lý mượt mà các tác vụ văn phòng, học tập. Bàn phím thoải mái, có đèn nền hỗ trợ làm việc trong điều kiện thiếu sáng. Máy có loa B&O cho âm thanh sống động, hỗ trợ WiFi 6, cổng kết nối đa dạng gồm USB-C, HDMI, jack 3.5mm, cùng pin 3-cell 43Wh cho thời lượng sử dụng ổn định. Phù hợp cho sinh viên, dân văn phòng cần một chiếc laptop nhỏ gọn, hiệu năng tốt.', 2),

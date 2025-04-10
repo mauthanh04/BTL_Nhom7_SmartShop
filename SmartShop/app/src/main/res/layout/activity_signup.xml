@@ -5,7 +5,7 @@
     android:id="@+id/hint"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backgroud">
+    android:background="@drawable/img">
 
     <TextView
         android:id="@+id/textView2"
@@ -22,30 +22,12 @@
         app:layout_constraintVertical_bias="0.13" />
 
     <EditText
-        android:id="@+id/fullname"
+        android:id="@+id/email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="32dp"
-        android:background="@drawable/input_bg"
-        android:ems="10"
-        android:hint="Tên đầy đủ"
-        android:inputType="text"
-        android:paddingLeft="20dp"
-        android:paddingTop="10dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="10dp"
-        android:textColorHint="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:background="@drawable/input_bg"
         android:ems="10"
         android:hint="Email"
@@ -54,31 +36,14 @@
         android:paddingTop="10dp"
         android:paddingRight="10dp"
         android:paddingBottom="10dp"
+        android:textColor="@color/white"
         android:textColorHint="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/fullname"
-        app:layout_constraintStart_toStartOf="@+id/fullname"
-        app:layout_constraintTop_toBottomOf="@+id/fullname" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
-        android:id="@+id/username"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/input_bg"
-        android:ems="10"
-        android:hint="Tên người dùng"
-        android:inputType="text"
-        android:paddingLeft="20dp"
-        android:paddingTop="10dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="10dp"
-        android:textColorHint="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/email"
-        app:layout_constraintStart_toStartOf="@+id/email"
-        app:layout_constraintTop_toBottomOf="@+id/email" />
-
-    <EditText
-        android:id="@+id/password"
+        android:id="@+id/matkhau"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -90,10 +55,60 @@
         android:paddingTop="10dp"
         android:paddingRight="10dp"
         android:paddingBottom="10dp"
+        android:textColor="@color/white"
         android:textColorHint="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/username"
-        app:layout_constraintStart_toStartOf="@+id/username"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
+        app:layout_constraintEnd_toEndOf="@+id/email"
+        app:layout_constraintStart_toStartOf="@+id/email"
+        app:layout_constraintTop_toBottomOf="@+id/email" />
+
+    <RadioGroup
+        android:id="@+id/roleRadioGroup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/matkhau"
+        app:layout_constraintStart_toStartOf="@+id/matkhau"
+        app:layout_constraintTop_toBottomOf="@+id/matkhau">
+
+        <RadioButton
+            android:id="@+id/radioUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="User"
+            android:layout_marginRight="60sp"
+            android:button="@drawable/custom_radio_button"
+            android:textColor="@color/white" />
+
+        <RadioButton
+            android:id="@+id/radioAdmin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Admin"
+            android:button="@drawable/custom_radio_button"
+            android:textColor="@color/white" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/hoten"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/input_bg"
+        android:ems="10"
+        android:hint="Họ tên"
+        android:inputType="text"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/roleRadioGroup"
+        app:layout_constraintStart_toStartOf="@+id/roleRadioGroup"
+        app:layout_constraintTop_toBottomOf="@+id/roleRadioGroup" />
 
     <ProgressBar
         android:id="@+id/progress"
@@ -102,7 +117,7 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        app:layout_constraintTop_toBottomOf="@+id/hoten" />
 
     <Button
         android:id="@+id/buttonSignUp"
@@ -115,9 +130,9 @@
         android:textColor="#03A9F4"
         android:textSize="15sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/password"
+        app:layout_constraintEnd_toEndOf="@+id/hoten"
         app:layout_constraintHorizontal_bias="0.666"
-        app:layout_constraintStart_toStartOf="@+id/password"
+        app:layout_constraintStart_toStartOf="@+id/hoten"
         app:layout_constraintTop_toBottomOf="@+id/progress" />
 
     <TextView
@@ -131,5 +146,6 @@
         app:layout_constraintEnd_toEndOf="@+id/buttonSignUp"
         app:layout_constraintStart_toStartOf="@+id/buttonSignUp"
         app:layout_constraintTop_toBottomOf="@+id/buttonSignUp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

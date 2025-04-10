@@ -2,8 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,27 +13,59 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.AppOrderFood"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
         <activity
-            android:name=".activity.Login"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-
+            android:name=".activity.User.ThongTinKhachHang"
+            android:exported="false" />
         <activity
-            android:name=".activity.SignUp"
-            android:exported="true"/>
-
+            android:name=".activity.User.Giohang"
+            android:exported="false" />
         <activity
-            android:name=".activity.MainActivity"
-            android:exported="true"/>
+            android:name=".activity.Admin.MainAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.User.LienHeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.User.MayTinhActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.User.DienThoaiActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.User.ChiTietSanPham"
+            android:exported="false" />
+         <activity
+         android:name=".activity.Login"
+         android:exported="true">
+         <intent-filter>
+         <action android:name="android.intent.action.MAIN" />
+         <category android:name="android.intent.category.LAUNCHER" />
+         </intent-filter>
+         </activity>
+         <activity
+         android:name=".activity.SignUp" 
+         android:exported="true" />
+         <activity
+         android:name=".activity.User.MainUserActivity"
+         android:exported="true" />
+<!--        <activity-->
+<!--            android:name=".activity.Login"-->
+<!--            android:exported="true" />-->
+<!--        <activity-->
+<!--            android:name=".activity.SignUp"-->
+<!--            android:exported="true" />-->
+<!--        <activity-->
+<!--            android:name=".activity.User.MainUserActivity"-->
+<!--            android:exported="true">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
     </application>
 
 </manifest>

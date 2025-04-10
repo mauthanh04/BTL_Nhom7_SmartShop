@@ -1,16 +1,19 @@
-package com.example.smartshop.activity;
+package com.example.smartshop.activity.User;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -24,8 +27,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.smartshop.R;
+import com.example.smartshop.activity.Login;
 import com.example.smartshop.adapter.LoaiSpAdapter;
 import com.example.smartshop.adapter.SanPhamAdapter;
+import com.example.smartshop.model.GioHang;
 import com.example.smartshop.model.LoaiSp;
 import com.example.smartshop.model.SanPham;
 import com.example.smartshop.ultil.CheckConnection;
@@ -40,8 +45,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity {
-
+public class MainUserActivity extends AppCompatActivity {
+    //Khai báo biến
     DrawerLayout drawerLayout;
     Toolbar toolbar;
     ViewFlipper viewFlipper;
@@ -56,23 +61,119 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<SanPham> mangSanPham;
     SanPhamAdapter sanPhamAdapter;
 
+    //gio hang
+    public static ArrayList<GioHang> manggiohang;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_user);
+        //khoi tạo các thành phần giao diện
         AnhXa();
+        //
         if(CheckConnection.haveNetworkConnection(getApplicationContext())){
             actionBar();
             actionViewFlipper();
             GetDuLieuLoaiSP();
             GetDuLieuSPMoiNhat();
+            //CHANGE
+            CatchOnItemListView();
         }
         else {
             CheckConnection.ShowToast_Short(getApplicationContext(), "Bạn hãy kiểm tra lại kết nối");
             finish();
         }
+        //gio hang
+        if (manggiohang == null) {
+            manggiohang = new ArrayList<>();
+        }
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.menugiohang) {
+            Intent intent = new Intent(getApplicationContext(), Giohang.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    //CHANGE : Chuyển trang khi ấn vào các loại sản phẩm ở listview
+    private void CatchOnItemListView() {
+        listViewManHinhChinh.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
+                    case 0:
+                        if (CheckConnection.haveNetworkConnection(getApplicationContext())) {
+                            Intent intent = new Intent(MainUserActivity.this, MainUserActivity.class);
+                            startActivity(intent);
+                        } else {
+                            CheckConnection.ShowToast_Short(getApplicationContext(), "Bạn hãy kiểm tra lại kết nối");
+                        }
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case 1:
+                        if (CheckConnection.haveNetworkConnection(getApplicationContext())) {
+                            Intent intent = new Intent(MainUserActivity.this, DienThoaiActivity.class);
+                            intent.putExtra("idloaisanpham", mangLoaiSp.get(position).getId());
+                            startActivity(intent);
+                        } else {
+                            CheckConnection.ShowToast_Short(getApplicationContext(), "Bạn hãy kiểm tra lại kết nối");
+                        }
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case 2:
+                        if (CheckConnection.haveNetworkConnection(getApplicationContext())) {
+                            Intent intent = new Intent(MainUserActivity.this, MayTinhActivity.class);
+                            intent.putExtra("idloaisanpham", mangLoaiSp.get(position).getId());
+                            startActivity(intent);
+                        } else {
+                            CheckConnection.ShowToast_Short(getApplicationContext(), "Bạn hãy kiểm tra lại kết nối");
+                        }
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case 3:
+                        if (CheckConnection.haveNetworkConnection(getApplicationContext())) {
+                            Intent intent = new Intent(MainUserActivity.this, LienHeActivity.class);
+                            intent.putExtra("idloaisanpham", mangLoaiSp.get(position).getId());
+                            startActivity(intent);
+                        } else {
+                            CheckConnection.ShowToast_Short(getApplicationContext(), "Bạn hãy kiểm tra lại kết nối");
+                        }
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case 4:
+                        if (CheckConnection.haveNetworkConnection(getApplicationContext())) {
+                            Intent intent = new Intent(MainUserActivity.this, ThongTinActivity.class);
+                            intent.putExtra("idloaisanpham", mangLoaiSp.get(position).getId());
+                            startActivity(intent);
+                        } else {
+                            CheckConnection.ShowToast_Short(getApplicationContext(), "Bạn hãy kiểm tra lại kết nối");
+                        }
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case 5: // Xử lý đăng xuất
+                        Toast.makeText(MainUserActivity.this, "Đăng xuất thành công", Toast.LENGTH_SHORT).show();
+
+                        // Chuyển về màn hình đăng nhập
+                        Intent logoutIntent = new Intent(MainUserActivity.this, Login.class);
+                        logoutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Xóa stack để tránh quay lại màn hình chính
+                        startActivity(logoutIntent);
+                        finish();
+                        break;
+                }
+            }
+        });
+    }
+
 
     private void AnhXa() {
         drawerLayout = findViewById(R.id.drawerLayout);
@@ -92,24 +193,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewManHinhChinh.setHasFixedSize(true);
         recyclerViewManHinhChinh.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
         recyclerViewManHinhChinh.setAdapter(sanPhamAdapter);
-
-        //xử lý nút đăng xuất
-        listViewManHinhChinh.setOnItemClickListener((parent, view, position, id) -> {
-            LoaiSp loaiSp = mangLoaiSp.get(position);
-            if (loaiSp.getTenLoaiSp().equals("Đăng xuất")) {
-                // Hiển thị thông báo đăng xuất thành công
-                Toast.makeText(MainActivity.this, "Đăng xuất thành công!", Toast.LENGTH_SHORT).show();
-
-                // Chuyển đến màn hình đăng nhập sau một khoảng thời gian ngắn
-                new Handler().postDelayed(() -> {
-                    Intent intent = new Intent(MainActivity.this, Login.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Xóa hết các activity trước đó
-                    startActivity(intent);
-                    finish(); // Kết thúc MainActivity
-                }, 1000); // Đợi 1 giây để Toast hiển thị
-            }
-        });
-
 
     }
 
@@ -131,14 +214,12 @@ public class MainActivity extends AppCompatActivity {
         mangQuangCao.add("https://cdn.nguyenkimmall.com/images/companies/_1/Content/video-PDP/iphone-16-pro-iphone-16-pro-max-sa-mac.jpg");
         mangQuangCao.add("https://png.pngtree.com/background/20230519/original/pngtree-dozens-of-electronic-devices-on-a-table-picture-image_2661915.jpg");
         mangQuangCao.add("https://cellphones.com.vn/sforum/wp-content/uploads/2019/05/Honor-20-Pro-lo-anh-quang-cao-1.jpg");
-
         for(int i = 0; i< mangQuangCao.size();i++){
             ImageView imageView = new ImageView(getApplicationContext());       //tạo một ImageView mới để chứa ảnh
             Picasso.get().load(mangQuangCao.get(i)).into(imageView);            //Sử dụng thư viện Picasso để tải ảnh từ URL vào ImageView
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);                 //Cài đặt để ảnh tự động co giãn theo kích thước của ViewFlipper
             viewFlipper.addView(imageView);
         }
-
         viewFlipper.setFlipInterval(5000);  //Thiết lập thời gian hiển thị mỗi ảnh trong 5 giây trước khi chuyển sang ảnh tiếp theo
         viewFlipper.setAutoStart(true);     //Bật chế độ tự động chuyển đổi giữa các ảnh
         //Thêm hiệu ứng chuyển động
