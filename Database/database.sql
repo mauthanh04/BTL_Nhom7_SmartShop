@@ -74,3 +74,23 @@ INSERT INTO sanpham (tensanpham, giasanpham, hinhanhsanpham, motasanpham, idsanp
 ('MacBook Pro M3 Pro 14 inch', 49990000, 'https://cdn.tgdd.vn/Products/Images/44/318230/apple-macbook-pro-14-inch-m3-pro-2023-silver-1-750x500.jpg', 
 'MacBook Pro M3 Pro 14 inch là chiếc laptop cao cấp của Apple, trang bị chip M3 Pro mạnh mẽ, tối ưu cho hiệu suất đồ họa và đa nhiệm. Màn hình Liquid Retina XDR 14.2 inch, độ sáng 1600 nits, tần số quét 120Hz ProMotion, mang lại hình ảnh sắc nét, màu sắc trung thực. Thiết kế nhôm nguyên khối sang trọng, bàn phím Magic Keyboard và trackpad lớn cho trải nghiệm gõ thoải mái. Hỗ trợ 3 cổng Thunderbolt 4, HDMI, MagSafe 3, pin lên đến 18 giờ. Đây là lựa chọn lý tưởng cho người làm sáng tạo, lập trình viên và dân chuyên nghiệp cần hiệu năng mạnh mẽ.', 2);
 
+
+
+CREATE TABLE donhang (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    tenkhachhang VARCHAR(255) NOT NULL,
+    sodienthoai VARCHAR(15) NOT NULL,
+    email VARCHAR(255) NOT NULL
+);
+
+
+CREATE TABLE chitietdonhang (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    madonhang INT NOT NULL,
+    masanpham INT NOT NULL,
+    tensanpham VARCHAR(255) NOT NULL,
+    giasanpham INT NOT NULL,
+    soluongsanpham INT NOT NULL,
+    FOREIGN KEY (madonhang) REFERENCES donhang(id),
+    FOREIGN KEY (masanpham) REFERENCES sanpham(id)
+);

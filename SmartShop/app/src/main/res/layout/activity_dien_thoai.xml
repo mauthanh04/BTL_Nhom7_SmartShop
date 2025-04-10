@@ -9,7 +9,7 @@
     tools:context=".activity.User.DienThoaiActivity">
     <androidx.appcompat.widget.Toolbar
         android:background="@drawable/congnghe4"
-       app:titleTextColor="@color/white"
+        app:titleTextColor="@color/white"
         app:title="Điện thoại"
         android:id="@+id/toolbaldienthoai"
         android:layout_width="match_parent"

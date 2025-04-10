@@ -7,14 +7,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".activity.User.MayTinhActivity">
+
     <androidx.appcompat.widget.Toolbar
-        android:background="@drawable/congnghe4"
-        app:titleTextColor="@color/white"
-        app:title="Máy tính"
         android:id="@+id/toolbalmaytinh"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize">
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/congnghe4"
+        app:title="Máy tính"
+        app:titleTextColor="@color/white">
     </androidx.appcompat.widget.Toolbar>
+
     <ListView
         android:id="@+id/listviewmaytinh"
         android:layout_width="match_parent"
