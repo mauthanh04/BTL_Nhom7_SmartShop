@@ -16,6 +16,24 @@ CREATE TABLE loaisanpham (
     hinhanhloaisanpham VARCHAR(200) NOT NULL
 ) ENGINE=InnoDB;
 
+CREATE TABLE donhang (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    tenkhachhang VARCHAR(255) NOT NULL,
+    sodienthoai VARCHAR(15) NOT NULL,
+    email VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE chitietdonhang (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    madonhang INT NOT NULL,
+    masanpham INT NOT NULL,
+    tensanpham VARCHAR(255) NOT NULL,
+    giassanpham INT NOT NULL,
+    soluongsanpham INT NOT NULL,
+    FOREIGN KEY (madonhang) REFERENCES donhang(id),
+    FOREIGN KEY (masanpham) REFERENCES sanpham(id)
+);
+
 INSERT INTO loaisanpham (id, tenloaisanpham, hinhanhloaisanpham) VALUES 
 (1, 'Điện thoại', 'https://cdn3.iconfinder.com/data/icons/flat-set-1/64/flat_set_1-25-512.png'),
 (2, 'Máy tính', 'https://cdn2.iconfinder.com/data/icons/whcompare-isometric-web-hosting-servers/50/web-browser-on-laptop-512.png');
