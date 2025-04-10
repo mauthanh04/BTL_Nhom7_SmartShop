@@ -3,8 +3,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:background="@drawable/congnghe3"
     android:layout_height="match_parent">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarthongtin"
+        android:background="@drawable/congnghe4"
+        app:titleTextColor="#FFFFFF"
+        app:title="Thông tin"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize" />
     <!-- Phần hiển thị tọa độ -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,6 +26,7 @@
             android:id="@+id/locationText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:text="175 Tây Sơn, Đống Đa, Hà Nội\nTọa độ: 21.007380, 105.824500"
             android:textSize="16sp"
             android:layout_marginTop="8dp" />

@@ -3,14 +3,14 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:background="#f5f5f5"
+    android:background="@drawable/congnghe3"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_contact"
-        android:background="#3F51B5"
+        android:id="@+id/toolbarlienhe"
+        android:background="@drawable/congnghe4"
         app:titleTextColor="#FFFFFF"
         app:title="Liên hệ"
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:paddingBottom="16dp"
             android:text="Liên hệ với chúng tôi"
-            android:textColor="#333333"
+            android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -53,7 +53,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Họ và tên: Phạm Tấn Phát"
+                android:text="Họ và tên: Nguyễn Văn A"
                 android:textColor="#333333"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -78,7 +78,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Email: thang6cdh@gmail.com"
+                android:text="Email: nguyenvana.com"
                 android:textColor="#333333"
                 android:textSize="16sp" />
         </LinearLayout>

@@ -69,25 +69,7 @@
             android:name=".activity.User.DienThoaiActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.User.ChiTietSanPham"
-<<<<<<< HEAD
-            android:exported="false" />
-=======
-            android:exported="false" /> <!-- <activity -->
-        <!-- android:name=".activity.Login" -->
-        <!-- android:exported="true"> -->
-        <!-- <intent-filter> -->
-        <!-- <action android:name="android.intent.action.MAIN" /> -->
-        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-        <!-- </intent-filter> -->
-        <!-- </activity> -->
-        <!-- <activity -->
-        <!-- android:name=".activity.SignUp" -->
-        <!-- android:exported="true" /> -->
-        <!-- <activity -->
-        <!-- android:name=".activity.User.MainUserActivity" -->
-        <!-- android:exported="true" /> -->
->>>>>>> DoQuyetThang
+            android:name=".activity.User.ChiTietSanPham"/>
         <activity
             android:name=".activity.User.MainUserActivity"
             android:exported="true" />
