@@ -17,6 +17,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".activity.User.ThongTinKhachHang"
+            android:exported="false" />
+        <activity
             android:name=".activity.User.Giohang"
             android:exported="false" />
         <activity
@@ -33,37 +36,34 @@
             android:exported="false" />
         <activity
             android:name=".activity.User.ChiTietSanPham"
-            android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".activity.Login"-->
-<!--            android:exported="true">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-<!--        </activity>-->
-<!--        <activity-->
-<!--            android:name=".activity.SignUp"-->
-<!--            android:exported="true" />-->
-<!--        <activity-->
-<!--            android:name=".activity.User.MainUserActivity"-->
-<!--            android:exported="true" />-->
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".activity.Login" -->
+        <!-- android:exported="true"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.MAIN" /> -->
+        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+        <!-- </intent-filter> -->
+        <!-- </activity> -->
+        <!-- <activity -->
+        <!-- android:name=".activity.SignUp" -->
+        <!-- android:exported="true" /> -->
+        <!-- <activity -->
+        <!-- android:name=".activity.User.MainUserActivity" -->
+        <!-- android:exported="true" /> -->
         <activity
             android:name=".activity.Login"
-            android:exported="true"/>
-
+            android:exported="true" />
         <activity
             android:name=".activity.SignUp"
             android:exported="true" />
         <activity
             android:name=".activity.User.MainUserActivity"
             android:exported="true">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

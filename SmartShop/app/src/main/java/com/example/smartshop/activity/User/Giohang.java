@@ -1,6 +1,7 @@
 package com.example.smartshop.activity.User;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.smartshop.R;
 import com.example.smartshop.adapter.GiohangAdapter;
+import com.example.smartshop.ultil.CheckConnection;
 
 import java.text.DecimalFormat;
 
@@ -43,7 +45,30 @@ public class Giohang extends AppCompatActivity {
         CheckData();
         EventUltil();
         CatchOnItemListView();
+        EventButton(); //nút thanh toán giỏ hàng
     }
+
+    private void EventButton() {
+        btntieptucmua.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),MainUserActivity.class);
+                startActivity(intent);
+            }
+        });
+        btnthanhtoan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(MainUserActivity.manggiohang.size() > 0){
+                    Intent intent = new Intent(getApplicationContext(), ThongTinKhachHang.class);
+                    startActivity(intent);
+                }else{
+                    CheckConnection.ShowToast_Short(getApplicationContext(),"Giỏ hàng đang trống để tiếp tục thanh toán");
+                }
+            }
+        });
+    }
+
     private void CatchOnItemListView() {
         lvgiohang.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -82,7 +107,6 @@ public class Giohang extends AppCompatActivity {
             }
         });
     }
-
     public static void EventUltil() {
         long tongtien = 0;
         for(int i=0;i < MainUserActivity.manggiohang.size();i++){
@@ -91,7 +115,6 @@ public class Giohang extends AppCompatActivity {
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
         txttongtien.setText(decimalFormat.format(tongtien)+ " Đ");
     }
-
     private void CheckData(){
         if(MainUserActivity.manggiohang.size() <= 0){
             giohangAdapter.notifyDataSetChanged();

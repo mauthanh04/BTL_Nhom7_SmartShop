@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:background="@drawable/congnghe3"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.User.ThongTinKhachHang">
+<LinearLayout
+    android:orientation="vertical"
+    android:background="@drawable/border"
+    android:layout_marginTop="80dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Thông tin khách hàng"
+        android:textSize="30sp"
+        android:textStyle="bold">
+    </TextView>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_marginTop="35dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:id="@+id/edittexttenkhachang"
+            android:inputType="text"
+            android:hint="Nhập tên khách hàng"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </EditText>
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:id="@+id/edittextsodienthoai"
+            android:inputType="phone"
+            android:hint="Nhập số điện thoại"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </EditText>
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:id="@+id/edittextemail"
+            android:inputType="textEmailAddress"
+            android:hint="Nhập email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </EditText>
+    </com.google.android.material.textfield.TextInputLayout>
+    <LinearLayout
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/buttonxacnhan"
+            android:text="XÁC nhận"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:textSize="13sp"
+            android:padding="10dp" />
+
+        <Button
+            android:id="@+id/buttontrove"
+            android:text="TRỞ VỀ"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:textSize="13sp"
+            android:padding="10dp" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+</LinearLayout>
+</LinearLayout>
