@@ -2,12 +2,17 @@ package com.example.smartshop.ultil;
 
 public class Server {
 
+<<<<<<< HEAD
     public static String localhost = "192.168.0.106";
+=======
+    public static String localhost = "192.168.90.101";
+>>>>>>> BuiXuanSon
     public static String DuongDanLoaiSP = "http://"  + localhost + "/ServerSmartShop/Main/getLoaiSP.php";
     public static String DuongDanLogin = "http://"  + localhost + "/ServerSmartShop/LoginRegister/login.php";
     public static String DuongDanSignUp = "http://"  + localhost + "/ServerSmartShop/LoginRegister/signup.php";
     public static String DuongDanSPMoiNhat = "http://"  + localhost + "/ServerSmartShop/Main/getSPMoiNhat.php";
     public static String Duongdandienthoai = "http://"  + localhost + "/ServerSmartShop/Main/getsanpham.php?page=";
+<<<<<<< HEAD
 
     public static String DuongDanGetSanPham = "http://"  + localhost + "/ServerSmartShop/Main/get_QL_SanPham.php";
     public static String DuongDanThemSanPham = "http://"  + localhost + "/ServerSmartShop/Main/them_QL_SanPham.php";
@@ -28,4 +33,9 @@ public class Server {
     public static String DuongDanThemChiTietDonHang = "http://"  + localhost + "/ServerSmartShop/Main/them_chitietdonhang.php";
     public static String DuongDanSuaChiTietDonHang = "http://"  + localhost + "/ServerSmartShop/Main/sua_chitietdonhang.php";
     public static String DuongDanXoaChiTietDonHang = "http://"  + localhost + "/ServerSmartShop/Main/xoa_chitietdonhang.php";
+=======
+    public static String Duongdandonhang = "http://"  + localhost + "/ServerSmartShop/Main/thongtinkhachhang.php";
+    public static String Duongdanchitietdonhang = "http://"  + localhost + "/ServerSmartShop/Main/chitietdonhang.php";
+
+>>>>>>> BuiXuanSon
 }

@@ -17,6 +17,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+<<<<<<< HEAD
             android:name=".activity.Admin.QuanLyChiTietDonHangActivity"
             android:exported="false" />
         <activity
@@ -27,6 +28,12 @@
             android:exported="false" />
         <activity
             android:name=".activity.Admin.QuanLySanPhamActivity"
+=======
+            android:name=".activity.User.ThongTinKhachHang"
+            android:exported="false" />
+        <activity
+            android:name=".activity.User.Giohang"
+>>>>>>> BuiXuanSon
             android:exported="false" />
         <activity
             android:name=".activity.Admin.MainAdminActivity"
@@ -41,7 +48,33 @@
             android:name=".activity.User.DienThoaiActivity"
             android:exported="false" />
         <activity
+            android:name=".activity.User.ChiTietSanPham"
+            android:exported="false" />
+        <!-- <activity -->
+        <!-- android:name=".activity.Login" -->
+        <!-- android:exported="true"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.MAIN" /> -->
+        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+        <!-- </intent-filter> -->
+        <!-- </activity> -->
+        <!-- <activity -->
+        <!-- android:name=".activity.SignUp" -->
+        <!-- android:exported="true" /> -->
+        <!-- <activity -->
+        <!-- android:name=".activity.User.MainUserActivity" -->
+        <!-- android:exported="true" /> -->
+        <activity
             android:name=".activity.Login"
+<<<<<<< HEAD
+=======
+            android:exported="true" />
+        <activity
+            android:name=".activity.SignUp"
+            android:exported="true" />
+        <activity
+            android:name=".activity.User.MainUserActivity"
+>>>>>>> BuiXuanSon
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -49,12 +82,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activity.SignUp"
-            android:exported="true" />
-        <activity
-            android:name=".activity.User.MainUserActivity"
-            android:exported="true" />
     </application>
 
 </manifest>
