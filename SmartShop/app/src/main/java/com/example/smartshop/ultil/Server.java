@@ -2,7 +2,7 @@ package com.example.smartshop.ultil;
 
 public class Server {
 
-    public static String localhost = "192.168.0.135";
+    public static String localhost = "192.168.90.101";
 
     public static String DuongDanLoaiSP = "http://"  + localhost + "/ServerSmartShop/Main/getLoaiSP.php";
     public static String DuongDanLogin = "http://"  + localhost + "/ServerSmartShop/LoginRegister/login.php";
