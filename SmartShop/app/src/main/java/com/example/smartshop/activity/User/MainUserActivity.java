@@ -160,10 +160,9 @@ public class MainUserActivity extends AppCompatActivity {
                         }
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
-                    case 5: // Xử lý đăng xuất
+                    case 5: //Xử lý đăng xuất
                         Toast.makeText(MainUserActivity.this, "Đăng xuất thành công", Toast.LENGTH_SHORT).show();
-
-                        // Chuyển về màn hình đăng nhập
+                        //Chuyển về màn hình đăng nhập
                         Intent logoutIntent = new Intent(MainUserActivity.this, Login.class);
                         logoutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Xóa stack để tránh quay lại màn hình chính
                         startActivity(logoutIntent);
@@ -182,12 +181,12 @@ public class MainUserActivity extends AppCompatActivity {
         recyclerViewManHinhChinh = findViewById(R.id.recyclerView);
         navigationView = findViewById(R.id.navigationView);
         listViewManHinhChinh = findViewById(R.id.listViewManHinhChinh);
-
+        //
         mangLoaiSp = new ArrayList<>();
         mangLoaiSp.add(0, new LoaiSp(0, "Trang Chính", "https://icons.iconarchive.com/icons/fps.hu/free-christmas-flat-circle/512/home-icon.png"));
         loaiSpAdapter = new LoaiSpAdapter(mangLoaiSp, getApplicationContext());
         listViewManHinhChinh.setAdapter(loaiSpAdapter);
-
+        //
         mangSanPham = new ArrayList<>();
         sanPhamAdapter = new SanPhamAdapter(getApplicationContext(), mangSanPham);
         recyclerViewManHinhChinh.setHasFixedSize(true);

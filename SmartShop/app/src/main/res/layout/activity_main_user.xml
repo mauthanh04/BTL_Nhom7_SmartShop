@@ -27,7 +27,6 @@
                 app:titleTextColor="@color/white">
             </androidx.appcompat.widget.Toolbar>
 
-
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
@@ -58,7 +57,8 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+                    android:layout_height="match_parent">
+                </androidx.recyclerview.widget.RecyclerView>
             </LinearLayout>
         </LinearLayout>
 
