@@ -76,7 +76,6 @@ public class DienThoaiActivity extends AppCompatActivity {
             GetIdloaisp();
             ActionToolBar();
             GetData(page);
-
             //Loadmore data
             LoadMoreData();
         }else {
@@ -206,11 +205,10 @@ public class DienThoaiActivity extends AppCompatActivity {
 
     private void GetIdloaisp() {
         iddt = getIntent().getIntExtra("idloaisanpham",-1);
-        Log.d("giatriloaisanpham",iddt+"");
-
+        //Log.d("giatriloaisanpham",iddt+"");
         if (iddt == -1) {
             CheckConnection.ShowToast_Short(getApplicationContext(), "Không tìm thấy loại sản phẩm");
-            finish(); // Đóng activity nếu không có id hợp lệ
+            finish();
         }
     }
 

@@ -162,9 +162,8 @@ public class MainUserActivity extends AppCompatActivity {
                         break;
                     case 5: //Xử lý đăng xuất
                         Toast.makeText(MainUserActivity.this, "Đăng xuất thành công", Toast.LENGTH_SHORT).show();
-                        //Chuyển về màn hình đăng nhập
                         Intent logoutIntent = new Intent(MainUserActivity.this, Login.class);
-                        logoutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Xóa stack để tránh quay lại màn hình chính
+                        logoutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(logoutIntent);
                         finish();
                         break;
@@ -172,8 +171,6 @@ public class MainUserActivity extends AppCompatActivity {
             }
         });
     }
-
-
     private void AnhXa() {
         drawerLayout = findViewById(R.id.drawerLayout);
         toolbar = findViewById(R.id.toolbarManHinhChinh);
@@ -194,7 +191,6 @@ public class MainUserActivity extends AppCompatActivity {
         recyclerViewManHinhChinh.setAdapter(sanPhamAdapter);
 
     }
-
     private void actionBar() {
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
@@ -206,7 +202,6 @@ public class MainUserActivity extends AppCompatActivity {
             }
         });
     }
-
     private void actionViewFlipper() {
         ArrayList<String> mangQuangCao = new ArrayList<>();
         mangQuangCao.add("https://cdn.tgdd.vn/Files/2020/01/20/1232366/0_800x450.jpg");
@@ -214,20 +209,18 @@ public class MainUserActivity extends AppCompatActivity {
         mangQuangCao.add("https://png.pngtree.com/background/20230519/original/pngtree-dozens-of-electronic-devices-on-a-table-picture-image_2661915.jpg");
         mangQuangCao.add("https://cellphones.com.vn/sforum/wp-content/uploads/2019/05/Honor-20-Pro-lo-anh-quang-cao-1.jpg");
         for(int i = 0; i< mangQuangCao.size();i++){
-            ImageView imageView = new ImageView(getApplicationContext());       //tạo một ImageView mới để chứa ảnh
-            Picasso.get().load(mangQuangCao.get(i)).into(imageView);            //Sử dụng thư viện Picasso để tải ảnh từ URL vào ImageView
-            imageView.setScaleType(ImageView.ScaleType.FIT_XY);                 //Cài đặt để ảnh tự động co giãn theo kích thước của ViewFlipper
+            ImageView imageView = new ImageView(getApplicationContext());
+            Picasso.get().load(mangQuangCao.get(i)).into(imageView);
+            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
             viewFlipper.addView(imageView);
         }
-        viewFlipper.setFlipInterval(5000);  //Thiết lập thời gian hiển thị mỗi ảnh trong 5 giây trước khi chuyển sang ảnh tiếp theo
-        viewFlipper.setAutoStart(true);     //Bật chế độ tự động chuyển đổi giữa các ảnh
-        //Thêm hiệu ứng chuyển động
+        viewFlipper.setFlipInterval(5000);
+        viewFlipper.setAutoStart(true);
         Animation animation_in_slide = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_in_right);
         Animation animation_out_slide = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_out_right);
         viewFlipper.setInAnimation(animation_in_slide);
         viewFlipper.setOutAnimation(animation_out_slide);
     }
-
     private void GetDuLieuLoaiSP() {
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Server.DuongDanLoaiSP, new Response.Listener<JSONArray>() {
@@ -249,7 +242,6 @@ public class MainUserActivity extends AppCompatActivity {
                     mangLoaiSp.add(3, new LoaiSp(0, "Liên Hệ", "https://cdn1.iconfinder.com/data/icons/mix-color-3/502/Untitled-12-512.png"));
                     mangLoaiSp.add(4, new LoaiSp(0, "Thông Tin", "https://icons.iconarchive.com/icons/kyo-tux/delikate/256/Info-icon.png"));
                     mangLoaiSp.add(5, new LoaiSp(0, "Đăng xuất", "https://icons.iconarchive.com/icons/pictogrammers/material/256/logout-icon.png"));
-
                 }
             }
         }, new Response.ErrorListener() {
@@ -260,7 +252,6 @@ public class MainUserActivity extends AppCompatActivity {
         });
         requestQueue.add(jsonArrayRequest);
     }
-
     private void GetDuLieuSPMoiNhat() {
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Server.DuongDanSPMoiNhat, new Response.Listener<JSONArray>() {

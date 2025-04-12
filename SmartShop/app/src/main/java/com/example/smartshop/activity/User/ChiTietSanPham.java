@@ -111,26 +111,41 @@ public class ChiTietSanPham extends AppCompatActivity {
         ArrayAdapter<Integer> arrayAdapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_dropdown_item,soluong);
         spinner.setAdapter(arrayAdapter);
     }
-    private void GetInfomation(){
-        SanPham sanPham = (SanPham) getIntent().getSerializableExtra("thongtinsanpham");
+    private void GetInfomation() {
+        int idSanPham = getIntent().getIntExtra("id_sanPham", -1);
 
-        id = sanPham.getId();
-        TenChitiet = sanPham.getTenSanPham();
-        GiaChitiet = sanPham.getGiaSanPham();
-        HinhanhChitiet = sanPham.getHinhAnhSanPham();
-        MotaChitiet = sanPham.getMoTaSanPham();
-        Idsanpham = sanPham.getIdSanPham();
+        SanPham sanPham = null;
 
-        txtten.setText(TenChitiet);
-        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-        txtgia.setText("Giá : " + decimalFormat.format(GiaChitiet) + " Đ");
-        txtmota.setText(MotaChitiet);
-        Picasso.get()
-                .load(HinhanhChitiet)
-                .placeholder(R.drawable.noimage)
-                .error(R.drawable.error)
-                .into(imgChitiet);
+        if (CacheManager.contains(idSanPham)) {
+            sanPham = CacheManager.getSanPham(idSanPham);
+        } else {
+            sanPham = (SanPham) getIntent().getSerializableExtra("thongtinsanpham");
+            if (sanPham != null) {
+                CacheManager.putSanPham(sanPham); // lưu lại cache
+            }
+        }
+
+        if (sanPham != null) {
+            id = sanPham.getId();
+            TenChitiet = sanPham.getTenSanPham();
+            GiaChitiet = sanPham.getGiaSanPham();
+            HinhanhChitiet = sanPham.getHinhAnhSanPham();
+            MotaChitiet = sanPham.getMoTaSanPham();
+            Idsanpham = sanPham.getIdSanPham();
+
+            txtten.setText(TenChitiet);
+            DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+            txtgia.setText("Giá : " + decimalFormat.format(GiaChitiet) + " Đ");
+            txtmota.setText(MotaChitiet);
+            Picasso.get()
+                    .load(HinhanhChitiet)
+                    .placeholder(R.drawable.noimage)
+                    .error(R.drawable.error)
+                    .into(imgChitiet);
+        }
+        CacheManager.printCache();
     }
+
     private void Anhxa(){
         toolbarChitiet = (Toolbar) findViewById(R.id.toolbarchitietsanphham);
         imgChitiet = (ImageView) findViewById(R.id.imageviewchitietsanpham);

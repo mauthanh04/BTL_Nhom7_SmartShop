@@ -46,7 +46,6 @@ public class LoaiSpAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         ViewHolder viewHolder;
-
         if (view == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.dong_listview_loaisp, viewGroup, false);
@@ -55,7 +54,7 @@ public class LoaiSpAdapter extends BaseAdapter {
             viewHolder.txtTenLoaiSp = view.findViewById(R.id.textViewLoaiSp);
             viewHolder.imgLoaiSp = view.findViewById(R.id.imageViewLoaiSp);
 
-            view.setTag(viewHolder); // Gán ViewHolder cho view
+            view.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) view.getTag();
         }
